@@ -6,7 +6,7 @@ extention  = ".png"
 
 gpu_1 = 0 # gpu 1 use cuda  le  plus  rapide
 gpu_2 = 3 # gpu 2 use openCL le  plus lent
-commande = ".\waifu2x\waifu2x-converter-cpp.exe --scale-ratio 6 -v 1 -i sample.jpg -o NUL -p " #commande pour effectuer un benchmark 
+commande = ".\waifu2x\waifu2x-converter-cpp.exe --scale-ratio 8 -v 1 -i sample.jpg -o NUL -p " #commande pour effectuer un benchmark 
 re_nombre_fichier = re.compile('([0-9]+) fichier')#regex du resultat du  bench
 regex_result = re.compile('GFLOPS: ([0-9]+\.[0-9]+),')
 
@@ -33,8 +33,8 @@ subprocess.Popen("mkdir gpu_1", shell=True)
 subprocess.Popen("mkdir gpu_2", shell=True)
 time.sleep(1)  #la  comande  est longue a la   detante
 
-#nombre_fichier=352
-#ratio=16.27
+nombre_fichier=35200
+ratio=16.27
 var_ratio =  0
 varbis_ratio =  0
 for i in range(1,nombre_fichier+1):
@@ -53,7 +53,7 @@ for i in range(1,nombre_fichier+1):
 	if var_ratio+1 > ratio: #choix  si  gpu  1 ou 2
 		
 		varbis_ratio+=1
-		if  varbis_ratio > 10:#on  regarde si  le asser image dans  gpu2
+		if  varbis_ratio >= 10:#on  regarde si  le asser image dans  gpu2
 			var_ratio  =  0 
 			varbis_ratio =  0
 
